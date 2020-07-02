@@ -16,7 +16,7 @@ const {
       charset: "utf8",
       timezone: "utc",
       password: DATABASE_PASSWORD,
-      ssl: DATABASE_NAME === "Get-Dressed-Club" ? false : true,
+      ssl: DATABASE_NAME === "getdressedclub" ? false : true,
     },
     seeds: {
       directory: "./seed",

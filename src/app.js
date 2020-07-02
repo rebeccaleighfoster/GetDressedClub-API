@@ -4,15 +4,19 @@ const morgan = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
 const knex = require("knex");
+const path = require("path");
 const { NODE_ENV } = require("./config");
 const themesRouter = require("./themes/ThemesRouter");
 const bodyParser = require("body-parser");
+const friendsRouter = require('./friends/FriendsRouter')
+const dailylogRouter = require('./dailylog/LogRouter')
 
 const app = express();
 const morganOption = NODE_ENV === "production" ? "tiny" : "common";
 
 app.use(morgan(morganOption));
 app.use(helmet());
+app.use(express.static(path.join(__dirname, '../uploads')));
 
 var allowCrossDomain = function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -34,11 +38,14 @@ app.use(allowCrossDomain);
 app.use(
   bodyParser.urlencoded({
     extended: true,
+    limit: '50mb'
   })
 );
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 
 app.use("/themes", themesRouter);
+app.use("/friends", friendsRouter);
+app.use("/dailylog", dailylogRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");
