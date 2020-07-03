@@ -34,51 +34,40 @@ dailylogRouter.post("/", (req, res) => {
     });
 });
 
-const upload = multer({
-  dest: "../../../uploads"
-});
+// const upload = multer({
+//   dest: "../uploads",
+// });
 
-dailylogRouter.post("/image/upload/:dailylogid", upload.single("file"), (req, res) => {
-  const tempPath = req.file.path;
-  fs.readFile(tempPath, function (err, data) {
-    const imageName = req.file.originalname
-    if(!imageName){
-       res.send(400).json({ msg: "invalid Image" })
-    } else {
-      DailyLogService.insertLogImage(req.app.get("db"), req.params.dailylogid, imageName)
-      .then((logs) => {
-        console.log("logs success", logs)
-        const newPath = __dirname + "../../../uploads/" + imageName;
-        console.log(newPath)
-        fs.writeFile(newPath, data, function (err) {
-          console.log(err)
-        });
-      })
-      .catch((err) => {
-        res.json(err);
-      });
-    }
-});
-  // if (path.extname(req.file.originalname).toLowerCase() === ".png") {
-  //   fs.rename(tempPath, targetPath, err => {
-  //     if (err) return handleError(err, res);
-
-  //     res
-  //       .status(200)
-  //       .contentType("text/plain")
-  //       .end("File uploaded!");
-  //   });
-  // } else {
-  //   fs.unlink(tempPath, err => {
-  //     if (err) return handleError(err, res);
-
-  //     res
-  //       .status(403)
-  //       .contentType("text/plain")
-  //       .end("Only .png files are allowed!");
-  //   });
-  // }
-})
+// dailylogRouter.post(
+//   "/image/upload/:dailylogid",
+//   upload.single("file"),
+//   (req, res) => {
+//     const tempPath = req.file.path;
+//     fs.readFile(tempPath, function (err, data) {
+//       const imageName = req.file.originalname;
+//       if (!imageName) {
+//         res.send(400).json({ msg: "invalid Image" });
+//       } else {
+//         DailyLogService.insertLogImage(
+//           req.app.get("db"),
+//           req.params.dailylogid,
+//           imageName
+//         )
+//           .then((logs) => {
+//             console.log("logs success", logs);
+//             const newPath = __dirname + "../../uploads/" + imageName;
+//             console.log(newPath);
+//             fs.writeFile(newPath, data, function (err) {
+//               console.log(err);
+//             });
+//           })
+//           .catch((err) => {
+//             res.json(err);
+//           });
+//       }
+//     });
+//   }
+// );
 
 dailylogRouter.patch("/edit/:id", (req, res) => {
   const updatedLog = req.body;
@@ -98,10 +87,7 @@ dailylogRouter.patch("/edit/:id", (req, res) => {
 });
 
 dailylogRouter.get("/:id", (req, res) => {
-  DailyLogService.getLogById(
-    req.app.get("db"),
-    parseInt(req.params.id)
-  )
+  DailyLogService.getLogById(req.app.get("db"), parseInt(req.params.id))
     .then((updatedLog) => {
       res.json(updatedLog);
     })
@@ -111,10 +97,8 @@ dailylogRouter.get("/:id", (req, res) => {
     });
 });
 
-
-
 dailylogRouter.delete("/:id", (req, res, next) => {
-  console.log(req.params.id)
+  console.log(req.params.id);
   DailyLogService.deleteLog(req.app.get("db"), req.params.id)
     .then(() => {
       res.status(204).end();
