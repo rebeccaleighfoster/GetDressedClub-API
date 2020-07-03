@@ -1,4 +1,4 @@
-BEGIN;
+
 
 INSERT INTO Themes
     (ThemeName)

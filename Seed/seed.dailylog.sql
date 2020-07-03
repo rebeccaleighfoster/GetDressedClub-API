@@ -1,4 +1,3 @@
-BEGIN;
 
 INSERT INTO dailylog
     (FriendName, DailyLogID, Date, MoveBody, GlassesWater, LeaveHouse, WinOfDay, Shower, CleanRoom, DoDishes, WashFace, FoodDrop,Call, VirtualMovie) 

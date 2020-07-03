@@ -1,4 +1,4 @@
-BEGIN;
+
 
 INSERT INTO FriendGroup
     (GroupName, FGID)
@@ -6,4 +6,3 @@ INSERT INTO FriendGroup
 VALUES
     ("silly name", 12),
     ("other silly name", 13)
-COMMIT;
