@@ -8,14 +8,15 @@ const dailylogRouter = express();
 
 dailylogRouter.get("/", (req, res) => {
   const knexInstance = req.app.get("db");
-  DailyLogService.getAllLogs(knexInstance)
-    .then((logs) => {
-      console.log(logs)
-      res.json(logs);
-    })
-    .catch((err) => {
-      res.json({error:"myerror"});
-    });
+  res.json({error: knexInstance });
+  // DailyLogService.getAllLogs(knexInstance)
+  //   .then((logs) => {
+  //     console.log(logs)
+  //     res.json(logs);
+  //   })
+  //   .catch((err) => {
+  //     res.json({error:"myerror"});
+  //   });
 });
 
 dailylogRouter.post("/", (req, res) => {
