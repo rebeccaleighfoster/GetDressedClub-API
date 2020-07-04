@@ -10,6 +10,7 @@ friendsRouter.get("/", (req, res) => {
       res.json(friends);
     })
     .catch((err) => {
+      console.log(err)
       res.json(err);
     });
 });
