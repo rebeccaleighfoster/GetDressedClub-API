@@ -14,7 +14,7 @@ dailylogRouter.get("/", (req, res) => {
       res.json(logs);
     })
     .catch((err) => {
-      res.json(err);
+      res.json({error:"myerror"});
     });
 });
 
