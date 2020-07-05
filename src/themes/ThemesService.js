@@ -12,6 +12,10 @@ const ThemesService = {
           return rows[0];
         });
     },
+
+  deleteTheme(knex, theme_id) {
+      return knex("themes").where({ theme_id }).delete();
+    },
   };
   
   module.exports = { ThemesService };

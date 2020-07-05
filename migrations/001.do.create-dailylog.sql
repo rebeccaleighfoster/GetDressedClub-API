@@ -1,18 +1,19 @@
 DROP TABLE IF EXISTS DailyLog;
 
 CREATE TABLE  DailyLog (
-    FriendName VARCHAR NOT NULL,
-    DailyLogID integer NOT NULL,
-    Date date NOT NULL,
-    MoveBody VARCHAR,
-    GlassesWater integer,
-    LeaveHouse boolean,
-    WinOfDay VARCHAR,
-    Shower boolean,
-    CleanRoom boolean,
-    DoDishes boolean,
-    WashFace boolean,
-    FoodDrop boolean,
-    Call boolean,
-    VirtualMovie boolean
+    friendname VARCHAR NOT NULL,
+    log_id integer NOT NULL,
+    date date NOT NULL,
+    movebody VARCHAR,
+    glasseswater integer,
+    leavehouse VARCHAR,
+    winofday VARCHAR,
+    shower VARCHAR,
+    cleanroom VARCHAR,
+    dodishes VARCHAR,
+    washface VARCHAR,
+    fooddrop VARCHAR,
+    call VARCHAR,
+    distancewalk VARCHAR,
+    imagename VARCHAR
 )

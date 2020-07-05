@@ -32,4 +32,13 @@ themesRouter.post("/", (req, res) => {
     });
 });
 
+themesRouter.delete("/:id", (req, res, next) => {
+  console.log(req.params.id);
+  ThemesService.deleteTheme(req.app.get("db"), req.params.id)
+    .then(() => {
+      res.status(204).end();
+    })
+    .catch(next);
+});
+
 module.exports = themesRouter;

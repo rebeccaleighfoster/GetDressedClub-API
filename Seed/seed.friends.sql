@@ -1,9 +1,7 @@
 
 
 INSERT INTO Friends
-    (name, FriendGroup, FriendID)
+    (name, Friend_id)
 
 VALUES
-    ('Mei', 'sillyname', 1),
-    ('kelsey', 'sillyname', 2),
-    ('Arielle', 'Othersillyname', 3),
+    ('Mei'),

@@ -1,6 +1,5 @@
 const express = require("express");
 const { FriendsService } = require("./FriendsService");
-
 const friendsRouter = express();
 
 friendsRouter.get("/", (req, res) => {
@@ -32,8 +31,8 @@ friendsRouter.post("/", (req, res) => {
     });
 });
 
-friendsRouter.delete("/:friendid", (req, res, next) => {
-  FriendsService.deleteLog(req.app.get("db"), req.params.id)
+friendsRouter.delete("/:id", (req, res, next) => {
+  FriendsService.deleteFriend(req.app.get("db"), req.params.id)
     .then(() => {
       res.status(204).end();
     })

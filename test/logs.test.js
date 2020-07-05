@@ -3,7 +3,7 @@ const app = require("../src/app");
 const { expect } = require("chai");
 const knex = require('knex');
 
-const mockData = [{ 
+const mockData = [{
     friendname: 'Rebecca',
     date: "2002",
     movebody: 'I stretched a bit',
@@ -12,13 +12,13 @@ const mockData = [{
     winofday: 'I got a lot of work done',
     shower: 'yes',
     cleanroom: 'yes',
-    dodishes: 'yes',
-    washface: 'no',
+    dodishes: 'no',
+    washface: 'yes',
     fooddrop: 'need',
     call: 'yes',
-    distancewalk: null,
+    distancewalk: "yes",
     log_id: 1,
-    imagename: null 
+    imagename: "filename.png"
 }];
 
 //get
@@ -30,16 +30,21 @@ describe("GET, PUT, POST, DELETE logs", () => {
           connection: 'postgres://localhost/getdressedclub-test',
       })
       app.set('db', db)
-  })
+
 
   after('disconnect from db', () => db.destroy())
-  
+
+before('clean the table', () => db.truncate())
+
+afterEach('cleanup', () => db.truncate())
+
+})
+
   it("should return an array of logs", () => {
     return supertest(app)
       .get('/dailylog')
       .expect(200, mockData);
   });
-
 
   it("responds with 200 and the dailylog associated with the log id", () => {
     const log_id = 1;
@@ -47,8 +52,7 @@ describe("GET, PUT, POST, DELETE logs", () => {
       .get(`/dailylog/${log_id}`)
       .expect(200, mockData[0]);
   });
-  
- 
+
   it(`creates a dailylog, responding with 201 and the new dailylog`, function (done)  {
       const newdailylog= {
         friendname: 'Rebecca',
@@ -59,15 +63,15 @@ describe("GET, PUT, POST, DELETE logs", () => {
         winofday: 'I got a lot of work done',
         shower: 'yes',
         cleanroom: 'yes',
-        dodishes: 'yes',
-        washface: 'no',
+        dodishes: 'no',
+        washface: 'yes',
         fooddrop: 'need',
         call: 'yes',
-        distancewalk: null,
+        distancewalk: "yes",
         log_id: 1,
-        imagename: null ,
+        imagename: "filename.png"
       }
-      
+
       supertest(app)
         .post('/dailylog')
         .send(newdailylog)

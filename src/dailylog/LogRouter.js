@@ -7,7 +7,7 @@ const path = require("path");
 const dailylogRouter = express();
 
 dailylogRouter.get("/", (req, res) => {
-  console.log("demo")
+  console.log("demo, hi")
   const knexInstance = req.app.get("db");
  // res.json({error: knexInstance });
   DailyLogService.getAllLogs(knexInstance)

@@ -12,6 +12,10 @@ const FriendsService = {
           return rows[0];
         });
     },
+
+    deleteFriend(knex, friend_id) {
+      return knex("friends").where({ friend_id }).delete();
+    },
   };
   
   module.exports = { FriendsService };
