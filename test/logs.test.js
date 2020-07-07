@@ -30,15 +30,9 @@ describe("GET, PUT, POST, DELETE logs", () => {
           connection: 'postgres://localhost/getdressedclub-test',
       })
       app.set('db', db)
-
+  })
 
   after('disconnect from db', () => db.destroy())
-
-before('clean the table', () => db('friendname,log_id, imagename distancewalk, call, fooddrop, washface, date, movebody, glasseswater, leavehouse, winofday, shower, cleanroom, dodishes').truncate())
-
-afterEach('cleanup', () => db('friendname,log_id, imagename distancewalk, call, fooddrop, washface, date, movebody, glasseswater, leavehouse, winofday, shower, cleanroom, dodishes').truncate())
-
-})
 
   it("should return an array of logs", () => {
     return supertest(app)
@@ -54,22 +48,10 @@ afterEach('cleanup', () => db('friendname,log_id, imagename distancewalk, call, 
   });
 
   it(`creates a dailylog, responding with 201 and the new dailylog`, function (done)  {
+    const log_id = Math.floor(1000 + Math.random() * 9000);
       const newdailylog= {
-        friendname: 'Rebecca',
-        date: "2002",
-        movebody: 'I stretched a bit',
-        glasseswater: 7,
-        leavehouse: 'no',
-        winofday: 'I got a lot of work done',
-        shower: 'yes',
-        cleanroom: 'yes',
-        dodishes: 'no',
-        washface: 'yes',
-        fooddrop: 'need',
-        call: 'yes',
-        distancewalk: "yes",
-        log_id: 1,
-        imagename: "filename.png"
+        ...mockData[0],
+        log_id
       }
 
       supertest(app)
@@ -96,7 +78,7 @@ afterEach('cleanup', () => db('friendname,log_id, imagename distancewalk, call, 
           expect(res.body.log_id).to.eql(newdailylog.log_id)
           expect(res.body.imagename).to.eql(newdailylog.imagename)
           supertest(app)
-            .delete(`/dailylog/${res.body.id}`)
+            .delete(`/dailylog/${newdailylog.log_id}`)
             .expect(204)
             .end(function (deleteErr, deleteResp) {
               if (err) throw err;
