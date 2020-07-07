@@ -20,5 +20,3 @@ module.exports = {
     process.env.DATABASE_URL ||
     "postgresql://dunder_mifflin@localhost/getdressedclub",
 };
-
-
