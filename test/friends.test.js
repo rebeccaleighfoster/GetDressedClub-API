@@ -5,13 +5,13 @@ const knex = require("knex");
 
 const mockData = [
   {
-    themename: "denim",
-    theme_id: 8,
+    name: "Anna",
+    friend_id: 3,
   },
 ];
 
 //get
-describe("GET, PUT, POST, DELETE themes", () => {
+describe("GET, PUT, POST, DELETE friends", () => {
   let db;
   before("make knex instance", () => {
     db = knex({
@@ -23,29 +23,29 @@ describe("GET, PUT, POST, DELETE themes", () => {
 
   after("disconnect from db", () => db.destroy());
 
-  it("should return an array of themes", () => {
-    return supertest(app).get("/themes").expect(200, mockData);
+  it("should return an array of friends", () => {
+    return supertest(app).get("/friends").expect(200, mockData);
   });
 
-  it(`creates a theme, responding with 201 and the new theme`, function (done) {
-    const theme_id = Math.floor(1000 + Math.random() * 9000);
-    const newTheme = {
-      themename: "denim",
-      theme_id: theme_id,
+  it(`creates a friend, responding with 201 and the new friend`, function (done) {
+    const friend_id = Math.floor(1000 + Math.random() * 9000);
+    const newfriend = {
+      name: "Anna",
+      friend_id: friend_id,
     };
 
     supertest(app)
-      .post("/themes")
-      .send(newTheme)
+      .post("/friends")
+      .send(newfriend)
       .set("Content-Type", "application/json")
       .set("Accept", "application/json")
       .expect(200)
       .end(function (err, res) {
         if (err) throw err;
-        expect(res.body.themename).to.eql(newTheme.themename);
-        expect(res.body).to.have.property('theme_id')
+        expect(res.body.name).to.eql(newfriend.name);
+        expect(res.body.friend_id).to.eql(newfriend.friend_id);
         supertest(app)
-          .delete(`/themes/${res.body.theme_id}`)
+          .delete(`/friends/${newfriend.friend_id}`)
           .expect(204)
           .end(function (deleteErr, deleteResp) {
             if (err) throw err;

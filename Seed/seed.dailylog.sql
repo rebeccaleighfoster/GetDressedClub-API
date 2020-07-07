@@ -1,8 +1,5 @@
-
 INSERT INTO dailylog
-    (FriendName, DailyLogID, Date, MoveBody, GlassesWater, LeaveHouse, WinOfDay, Shower, CleanRoom, DoDishes, WashFace, FoodDrop,Call, VirtualMovie) 
+    (FriendName, Log_ID, Date, MoveBody, GlassesWater, LeaveHouse, WinOfDay, Shower, CleanRoom, DoDishes, WashFace, FoodDrop,Call, imagename, distancewalk) 
 
 VALUES
-    ( 'Kelsey', 1, '2008-11-11',  'i went on a run', 4, TRUE,  'I didnt push myself too hard on my run',  TRUE, TRUE, TRUE,TRUE,TRUE,TRUE,TRUE ),
-    ( 'Mei', 2, '2020-06-14',  'i took bishop to the park', 4, TRUE,  'I didnt get frustrated with bishop when he wouldnt stop crying',  TRUE, TRUE, TRUE,TRUE,TRUE,TRUE,TRUE)
-   
+    ( 'Rebecca', 1, '2002',  'I stretched a bit', 7, 'no',  'I got a lot of work done', 'yes', 'yes', 'no', 'yes', 'need', 'yes', 'filename.png', 'yes' )
