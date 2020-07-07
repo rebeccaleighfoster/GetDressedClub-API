@@ -34,9 +34,9 @@ describe("GET, PUT, POST, DELETE logs", () => {
 
   after('disconnect from db', () => db.destroy())
 
-before('clean the table', () => db.truncate())
+before('clean the table', () => db('friendname,log_id, imagename distancewalk, call, fooddrop, washface, date, movebody, glasseswater, leavehouse, winofday, shower, cleanroom, dodishes').truncate())
 
-afterEach('cleanup', () => db.truncate())
+afterEach('cleanup', () => db('friendname,log_id, imagename distancewalk, call, fooddrop, washface, date, movebody, glasseswater, leavehouse, winofday, shower, cleanroom, dodishes').truncate())
 
 })
 
