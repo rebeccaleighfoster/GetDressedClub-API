@@ -1,26 +1,206 @@
-# Express Boilerplate!
+# Get Dressed Club
+https://getdressedclubclient.vercel.app/
 
-This is a boilerplate project used for starting new projects!
+## Summary
 
-## Set up
+The Get Dressed Club a self care fullstack CRUD app for friends to take care of themselves and eachother during quarantine. Users can get outfit themes for the day, submit daily logs of their self care routine, and offer or ask for support if they are struggling. 
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+## Motivation
+ 
+The Get Dressed Club is inspired from a text thread that was started during the begininng of the COVID-19 quaratine. It is intended to give users a place to track their own self care habits, get a fun outfit theme for the day, and provide and ask for support. Instead of traditional social media that mainly focuses on the more notable and exciting moments, this app intended to give users a place to focus on their own self care and create community with their close friends. The app is designed to be reminisent of early 2000s internet to give users a nostalgic feel and remind them of when we were kids and did not have such big worries. 
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+## API Endpoints
+This CRUD app has several endpoints. The get endpoints include one that returns all the daily logs, one that returns an outfit theme for the day. The post end points enable users to create a username, or add a log. The users can also update their log information with a patch endpoint and delete a log with a delete endpoint. 
 
-## Scripts
+## Languages/Frameworks Utilized
 
-Start the application `npm start`
+* [React](https://reactjs.org/)
+* [Javascript](https://www.javascript.com/)
+* [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
+* [Node](https://nodejs.org/en/)
+* [Express](https://expressjs.com/)
+* [PostgreSQL](https://www.postgresql.org/)
 
-Start nodemon for the application `npm run dev`
+## API Documentation
 
-Run the tests `npm test`
+# Logs
+Returns all weaver profiles
+* URL `/themes`
 
-## Deploying
+* Method `GET`
+* URL Params:
+None
+* Data Params:
+None
+* Success Response:
+```
+    Code: 200
+    Content:  {
+        "friendname": "Arielle",
+        "date": "2020-07-03T05:00:00.000Z",
+        "movebody": "jkflsd;",
+        "glasseswater": 3,
+        "leavehouse": "yes",
+        "winofday": "Helping Becca with food",
+        "shower": "yes",
+        "cleanroom": "yes",
+        "dodishes": "yes",
+        "washface": "yes",
+        "fooddrop": " Reach out to me if you you need someone to drop food off for me.",
+        "call": null,
+        "distancewalk": null,
+        "log_id": 15,
+        "imagename": null
+    }
+```
+# Add log
+Adds a log
+* URL `/dailylog`
+* Method `POST`
+* Success Response:
+```
+    Code: 204
+    Content: {   {
+        "friendname": "Arielle",
+        "date": "2020-07-03T05:00:00.000Z",
+        "movebody": "jkflsd;",
+        "glasseswater": 3,
+        "leavehouse": "yes",
+        "winofday": "Helping Becca with food",
+        "shower": "yes",
+        "cleanroom": "yes",
+        "dodishes": "yes",
+        "washface": "yes",
+        "fooddrop": " Reach out to me if you you need someone to drop food off for me.",
+        "call": null,
+        "distancewalk": null,
+        "log_id": 15,
+        "imagename": null
+    }}
+```
+ # Edit log
+Edits a log
+* URL `/dailylog`
+* Method `Patch`
+* URL Params: `log_id=[integer]`
+* Success Response:
+```
+    Code: 204
+    Content: {   {
+        "friendname": "Arielle",
+        "date": "2020-07-03T05:00:00.000Z",
+        "movebody": "jkflsd;",
+        "glasseswater": 3,
+        "leavehouse": "yes",
+        "winofday": "Helping Becca with food",
+        "shower": "yes",
+        "cleanroom": "yes",
+        "dodishes": "yes",
+        "washface": "yes",
+        "fooddrop": " Reach out to me if you you need someone to drop food off for me.",
+        "call": null,
+        "distancewalk": null,
+        "log_id": 15,
+        "imagename": null
+    }}
+```
+### Delete log
+Deletes existing log
+* URL `/dailylog`
+* Method `DELETE`
+* URL Params: `log_id=[integer]`
+* Data Params: None
+* Success Response:
+```
+    Code: 204
+    Content: none
+```
 
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.# express-boilerplate
+### Friends
+Returns All Usernames
+* URL `/friends`
+* Method `GET`
+* URL Params: None
+* Data Params: None
+* Success Response
+```
+    Code: 200
+    Content:{
+        "name": "Rebecca Foster",
+        "friend_id": 1
+    }
+    }
+```
+
+### Add Username
+Adds username
+* URL `/friends`
+* Method: `POST`
+* URL Params none
+* Data Params: None
+* Success Response:
+```
+   {
+        "name": "Rebecca Foster",
+        "friend_id": 1
+    }
+```
+
+### Delete Username
+Deletes Existing Username
+* URL `/friends/:id`
+* Method `DELETE`
+* URL Params: `friend_id=[integer]`
+* Data Params: None
+* Success Response:
+```
+    Code: 204
+    Content: none
+```
+
+### Themes
+Returns All Themes
+* URL `/themes`
+* Method `GET`
+* URL Params: None
+* Data Params: None
+* Success Response
+```
+    Code: 200
+    Content:{
+        "themename": "Stripes",
+        "theme": 1
+    }
+    }
+```
+
+### Add Theme
+Adds Theme
+* URL `/themes`
+* Method: `POST`
+* URL Params none
+* Data Params: None
+* Success Response:
+```
+   {
+        "themename": "denim",
+        "theme_id": 1
+    }
+```
+
+### Delete THeme
+Deletes Existing THeme
+* URL `/theme/:id`
+* Method `DELETE`
+* URL Params: `theme_id=[integer]`
+* Data Params: None
+* Success Response:
+```
+    Code: 204
+    Content: none
+```
+## Live App
+[Get Dressed Club Live Link](https://getdressedclubclient.vercel.app/)
+
+## Server Repository
+[Get Dressed Club Client Repository](https://github.com/rebeccaleighfoster/getdressedclubclient)
