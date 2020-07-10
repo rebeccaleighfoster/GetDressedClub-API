@@ -202,5 +202,5 @@ Deletes Existing THeme
 ## Live App
 [Get Dressed Club Live Link](https://getdressedclubclient.vercel.app/)
 
-## Server Repository
+## Client Repository
 [Get Dressed Club Client Repository](https://github.com/rebeccaleighfoster/getdressedclubclient)

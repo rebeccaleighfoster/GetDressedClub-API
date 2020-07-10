@@ -7,7 +7,6 @@ const path = require("path");
 const dailylogRouter = express();
 
 dailylogRouter.get("/", (req, res) => {
-  console.log("demo, hi")
   const knexInstance = req.app.get("db");
  // res.json({error: knexInstance });
   DailyLogService.getAllLogs(knexInstance)
@@ -75,10 +74,11 @@ dailylogRouter.post("/", (req, res) => {
 
 dailylogRouter.patch("/edit/:id", (req, res) => {
   const updatedLog = req.body;
-  delete updatedLog.id;
+  console.log(updatedLog, req.params.id)
+  // delete updatedLog.log_id;
   DailyLogService.updateLog(
     req.app.get("db"),
-    parseInt(req.params.dailylogid),
+    parseInt(req.params.id),
     updatedLog
   )
     .then((updatedLog) => {

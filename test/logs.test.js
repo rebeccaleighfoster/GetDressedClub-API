@@ -21,7 +21,7 @@ const mockData = [{
     imagename: "filename.png"
 }];
 
-//get
+
 describe("GET, PUT, POST, DELETE logs", () => {
   let db;
   before('make knex instance', () => {

@@ -17,17 +17,17 @@ const DailyLogService = {
       });
   },
 
-  insertLogImage(knex, logId, imageName) {
-    console.log(logId, imageName)
-    return knex("dailylog").where({ log_id: logId }).update({ imagename: imageName });
-  },
+  // insertLogImage(knex, logId, imageName) {
+  //   console.log(logId, imageName)
+  //   return knex("dailylog").where({ log_id: logId }).update({ imagename: imageName });
+  // },
 
   deleteLog(knex, log_id) {
     return knex("dailylog").where({ log_id }).delete();
   },
 
-  updateLog(knex, id, newLogFields) {
-    return knex("dailylog").where({ id }).update(newLogFields);
+  updateLog(knex, log_id, newLogFields) {
+    return knex("dailylog").where({ log_id }).update(newLogFields);
   },
 };
 
