@@ -16,7 +16,6 @@ friendsRouter.get("/", (req, res) => {
   
 friendsRouter.post("/", (req, res) => {
   const newFriend = req.body;
-  console.log(newFriend);
   for (const [key, value] of Object.entries(newFriend))
     if (value == null)
       return res.status(400).json({

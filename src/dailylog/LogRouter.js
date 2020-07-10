@@ -1,14 +1,13 @@
 const express = require("express");
 const { DailyLogService } = require("./LogService.js");
-const multer = require("multer");
-const fs = require("fs");
-const path = require("path");
+// const multer = require("multer");
+// const fs = require("fs");
+// const path = require("path");
 
 const dailylogRouter = express();
 
 dailylogRouter.get("/", (req, res) => {
   const knexInstance = req.app.get("db");
- // res.json({error: knexInstance });
   DailyLogService.getAllLogs(knexInstance)
     .then((logs) => {
       console.log(logs)
@@ -37,6 +36,7 @@ dailylogRouter.post("/", (req, res) => {
     });
 });
 
+//code to be used when deployed with upgraded database
 // const upload = multer({
 //   dest: "../uploads",
 // });
@@ -74,8 +74,6 @@ dailylogRouter.post("/", (req, res) => {
 
 dailylogRouter.patch("/edit/:id", (req, res) => {
   const updatedLog = req.body;
-  console.log(updatedLog, req.params.id)
-  // delete updatedLog.log_id;
   DailyLogService.updateLog(
     req.app.get("db"),
     parseInt(req.params.id),

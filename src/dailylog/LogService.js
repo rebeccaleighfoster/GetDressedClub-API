@@ -16,7 +16,7 @@ const DailyLogService = {
         return rows[0];
       });
   },
-
+//code to be used with updated database for photo uploads
   // insertLogImage(knex, logId, imageName) {
   //   console.log(logId, imageName)
   //   return knex("dailylog").where({ log_id: logId }).update({ imagename: imageName });

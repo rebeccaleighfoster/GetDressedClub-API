@@ -7,7 +7,6 @@ themesRouter.get("/", (req, res) => {
   const knexInstance = req.app.get("db");
   ThemesService.getAllThemes(knexInstance)
     .then((themes) => {
-        console.log(themes)
       res.json(themes);
     })
     .catch((err) => {
